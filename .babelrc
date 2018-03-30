@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }],
+    "flow"
+  ],
+  "plugins": [
+    "transform-es2015-modules-commonjs"
+  ],
+  "env": {
+    "test": {
+      "presets":[
+        ["env"]
+      ],
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}

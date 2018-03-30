@@ -1,0 +1,12 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/build/.*
+[include]
+./src
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
