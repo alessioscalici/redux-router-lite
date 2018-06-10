@@ -1,40 +1,49 @@
 {
-  "name": "js-lib-starter",
+  "name": "redux-router",
   "version": "0.1.0",
-  "description": "A base configuration to build a js library using modern js",
+  "description": "A pure redux-based router",
   "main": "index.js",
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-transform-dir": "^1.0.5",
-    "escope": "^3.6.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-airbnb-flow": "^1.0.2",
-    "eslint-plugin-import": "^2.9.0",
-    "flow-bin": "^0.68.0",
-    "flux-standard-action": "^2.0.1",
     "history": "^4.7.2",
-    "path-to-regexp": "^2.2.0",
-    "redux": "^3.7.2",
-    "regenerator-runtime": "^0.11.1"
+    "path-to-regexp": "^2.2.0"
   },
   "scripts": {
     "build": "node ./scripts/build.js",
     "test": "jest ./test --env=jsdom",
     "lint-js": "eslint ./src",
-    "flow-check": "flow check"
+    "flow": "flow check",
+    "build-full": "npm run lint-js && npm run flow && npm test && npm run build"
   },
   "keywords": [
     "js",
     "javascript",
-    "library"
+    "library",
+    "redux",
+    "router"
   ],
   "author": "alessioscalici",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^22.4.3"
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-transform-dir": "^1.0.5",
+    "escope": "^3.6.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-airbnb-flow": "^1.0.2",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "flow-bin": "^0.68.0",
+    "flux-standard-action": "^2.0.1",
+    "jest": "^22.4.3",
+    "redux": "^3.7.2",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "peerDependencies": {
+    "redux": "^3.7.2"
   }
 }

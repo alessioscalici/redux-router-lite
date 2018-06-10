@@ -1,4 +1,6 @@
-export const deparam = (queryString) => {
+// @flow
+
+export const deparam = (queryString: string) => {
   const obj = {};
   const parmArray = queryString.replace(/\+/g, ' ').split('&');
 
@@ -12,7 +14,7 @@ export const deparam = (queryString) => {
   return obj;
 };
 
-export const coerceTypes = (obj, emptyValue = '') => {
+export const coerceTypes = (obj: {}, emptyValue: any = '') => {
   const types = { true: !0, false: !1, null: null };
   const result = {};
   Object.keys(obj).forEach((k) => {

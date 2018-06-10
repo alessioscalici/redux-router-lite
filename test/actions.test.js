@@ -1,12 +1,9 @@
+
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { isFSA } from 'flux-standard-action';
 
-import {
-  setLocation,
-} from '../src/state/actions';
+import { SET_LOCATION, setLocation } from '../src/state/actions';
 
-import {
-  SET_LOCATION,
-} from '../src/state/types';
 
 describe('router/actions', () => {
   describe('setLocation', () => {

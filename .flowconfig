@@ -1,8 +1,8 @@
 [ignore]
-<PROJECT_ROOT>/node_modules/.*
 <PROJECT_ROOT>/build/.*
 [include]
 ./src
+./flow-typed/npm
 [libs]
 
 [lints]

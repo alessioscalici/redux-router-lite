@@ -1,7 +1,13 @@
 const transform = require('babel-transform-dir');
+const fs = require('fs');
+const path = require('path');
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
+const BABEL_CONFIG = JSON.parse(fs.readFileSync(resolveApp('.babelrc'), 'utf8'));
 
 // Transform all javascript files in `./src` and write the result to `./build`
-const BABEL_CONFIG = require('../.babelrc.json');
 
 transform('./src', './build', {
   babel: BABEL_CONFIG,

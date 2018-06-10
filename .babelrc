@@ -5,7 +5,8 @@
         "browsers": ["last 2 versions", "safari >= 7"]
       }
     }],
-    "flow"
+    "flow",
+    "stage-2"
   ],
   "plugins": [
     "transform-es2015-modules-commonjs"
@@ -13,7 +14,7 @@
   "env": {
     "test": {
       "presets":[
-        ["env"]
+        ["env", "stage-2"]
       ],
       "plugins": [
         "transform-es2015-modules-commonjs"

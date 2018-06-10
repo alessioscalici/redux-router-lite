@@ -69,7 +69,7 @@ describe('router', () => {
         expect(match).toBeDefined();
       });
       it('should return the matched route object', () => {
-        expect(match.route).toBe(routes[0]);
+        expect(match.routeId).toBe(routes[0].name);
       });
       it('should return an empty params object', () => {
         expect(match.params).toEqual({});
@@ -85,7 +85,7 @@ describe('router', () => {
         expect(match).toBeDefined();
       });
       it('should return the matched route object', () => {
-        expect(match.route).toBe(routes[1]);
+        expect(match.routeId).toBe(routes[1].name);
       });
       it('should return the params object', () => {
         expect(match.params).toEqual({ id: 'john' });
@@ -105,14 +105,14 @@ describe('router', () => {
         expect(match).toBeDefined();
       });
       it('should return the matched route object', () => {
-        expect(match.route).toBe(routes[2]);
+        expect(match.routeId).toBe(routes[2].name);
       });
       it('should return the params object', () => {
         expect(match.params).toEqual({ id: 'john' });
       });
       it('should match an URL without the optional parameter', () => {
         match = matchRoute(routes, '/docs/');
-        expect(match.route).toBe(routes[2]);
+        expect(match.routeId).toBe(routes[2].name);
       });
     });
   });
@@ -177,7 +177,8 @@ describe('router', () => {
     let history;
     const PATH = '/docs';
     beforeEach(() => {
-      history = setMode('browser');
+      setMode('browser');
+      history = getHistory('browser');
       history.push.mockReset();
       history.pop.mockReset();
       history.replace.mockReset();
@@ -215,7 +216,7 @@ describe('router', () => {
       const route = locationToRoute({
         pathname: '/user/4',
       });
-      expect(route.route).toBe(compiledRoutes[1]);
+      expect(route.routeId).toBe(compiledRoutes[1].name);
       expect(route.params).toEqual({ id: '4' });
       expect(route.searchParams).toEqual({});
     });
@@ -225,7 +226,7 @@ describe('router', () => {
         pathname: '/user/4',
         search: 'lang=ita',
       });
-      expect(route.route).toBe(compiledRoutes[1]);
+      expect(route.routeId).toBe(compiledRoutes[1].name);
       expect(route.params).toEqual({ id: '4' });
       expect(route.searchParams).toEqual({ lang: 'ita' });
     });

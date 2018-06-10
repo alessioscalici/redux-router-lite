@@ -1,15 +1,22 @@
-/* eslint import/prefer-default-export : 0 */
-import { SET_LOCATION } from './types';
+/* @flow */
+
+// eslint-disable-next-line no-unused-vars
+import type { SetLocationAction, Location } from '../flow-types';
 
 
-export function setLocation(location, route, params, searchParams) {
-  return {
-    type: SET_LOCATION,
-    payload: {
-      location,
-      route,
-      params: params || {},
-      searchParams: searchParams || {},
-    },
-  };
-}
+export const SET_LOCATION = '@@router/set-location';
+
+export const setLocation = (
+  location: Location,
+  route: string,
+  params: {[string]: string},
+  searchParams: {[string]: string}
+): SetLocationAction => ({
+  type: SET_LOCATION,
+  payload: {
+    location,
+    route,
+    params: params || {},
+    searchParams: searchParams || {},
+  },
+});

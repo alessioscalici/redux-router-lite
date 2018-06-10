@@ -1,37 +1,47 @@
+// @flow
+
 import createBrowserHistory from 'history/createBrowserHistory';
 import createHashHistory from 'history/createHashHistory';
 import pathToRegexp, { compile } from 'path-to-regexp';
+
+// local
+// eslint-disable-next-line no-unused-vars
+import type { RouteConfig, HistoryMode, Location, History, AppStore, MatchedRoute, EnhancedRoute, RouterConfig } from './flow-types';
+
 import { setLocation } from './state/actions';
 import { deparam } from './utils';
 import { getRouter } from './state/selectors';
 
+
 // history
-let history = null;
-let store = null;
-let isTimeTraveling = false;
+let history: ?History = null;
+let store: ?AppStore = null;
+let isTimeTraveling: boolean = false;
 
-let routes = null;
-let routeNotFound = null;
+let routes: ?Array<EnhancedRoute> = null;
+let routeNotFound: ?RouteConfig = null;
 
-export const getHistory = () => history;
+export const getHistory = (): ?History => history;
 
-export function setRoutes(rts) {
-  let i;
+export const setRoutes = (rts: Array<RouteConfig>) => {
   const cnt = rts.length;
-  let route;
+  const enhancedRoutes: Array<EnhancedRoute> = [];
   let keys;
-  for (i = 0; i < cnt; i += 1) {
+  for (let i = 0; i < cnt; i += 1) {
     keys = [];
-    route = rts[i];
-    route.re = pathToRegexp(route.path, keys);
-    route.keys = keys;
-    route.getPath = compile(route.path);
+    const route = {
+      ...rts[i],
+      re: pathToRegexp(rts[i].path, keys),
+      keys,
+      getPath: compile(rts[i].path),
+    };
+    enhancedRoutes.push(route);
   }
-  routes = rts;
-  return routes;
-}
+  routes = enhancedRoutes;
+  return enhancedRoutes;
+};
 
-export function matchRoute(theRoutes, url) {
+export const matchRoute = (theRoutes: Array<EnhancedRoute>, url: string): ?MatchedRoute => {
   for (let i = 0; i < theRoutes.length; i += 1) {
     const route = theRoutes[i];
     const match = route.re.exec(url);
@@ -40,31 +50,29 @@ export function matchRoute(theRoutes, url) {
       for (let j = 0; j < route.keys.length; j += 1) {
         params[route.keys[j].name] = match[j + 1];
       }
-      return { route, params };
+      return { routeId: route.name, params, searchParams: {} };
     }
   }
   return null;
-}
+};
 
 
 // private funcs
 
-export function setMode(mode) {
+export const setMode = (mode: HistoryMode): void => {
   if (mode === 'hash') {
     history = createHashHistory();
   } else {
     history = createBrowserHistory();
   }
-  return history;
-}
+};
 
-export function isValidAction(historyAction) {
-  return ['push', 'pop', 'replace'].indexOf(historyAction) >= 0;
-}
+export const isValidAction = (historyAction: string): boolean =>
+  ['push', 'pop', 'replace'].indexOf(historyAction) >= 0;
 
 
-export const routeToPath = (routeName, params, searchParams) => {
-  const route = routes.find(routeObj => routeObj.name === routeName);
+export const routeToPath = (routeName: string, params: {}, searchParams: {}) => {
+  const route = routes && routes.find(routeObj => routeObj.name === routeName);
   if (!route) {
     throw new Error(`Route "${routeName}" is not defined!`);
   }
@@ -81,72 +89,86 @@ export const routeToPath = (routeName, params, searchParams) => {
   return url;
 };
 
-export const gotoPath = (historyAction, path) => {
-  if (isValidAction(historyAction)) {
+export const gotoPath = (historyAction: string, path: string) => {
+  if (history && isValidAction(historyAction)) {
     history[historyAction](path);
   }
 };
 
 
-export const gotoRoute = (routeName, params, searchParams) => {
+export const gotoRoute = (routeName: string, params: {}, searchParams: {}) => {
   gotoPath('push', routeToPath(routeName, params, searchParams));
 };
 
-export function locationToRoute(historyLocation) {
-  let newRoute = null;
-  let newParams = null;
-  let searchParams = null;
+
+export const locationToRoute = (historyLocation: Location): ?MatchedRoute => {
+  if (!routes) {
+    return null;
+  }
+  let newRoute: ?string = null;
+  let newParams = {};
+  let searchParams = {};
   const match = matchRoute(routes, historyLocation.pathname);
 
   if (match) {
-    newRoute = match.route;
+    newRoute = match.routeId;
     newParams = match.params;
     searchParams = deparam((historyLocation.search || '').replace(/^\?/, ''));
   } else {
-    newRoute = routeNotFound.name;
+    newRoute = routeNotFound && routeNotFound.name;
+  }
+
+  if (!newRoute) {
+    return null;
   }
 
   return {
-    route: newRoute,
+    routeId: newRoute,
     params: newParams,
     searchParams,
   };
-}
-
-
-export const configStore = (reduxStore) => {
-  store = reduxStore;
-
-
-  const urlChangeHandler = (location) => {
-    if (!isTimeTraveling) {
-      const parsedRoute = locationToRoute(location);
-      store.dispatch(setLocation(
-        location,
-        parsedRoute.route,
-        parsedRoute.params,
-        parsedRoute.searchParams,
-      ));
-    }
-  };
-
-
-  history.listen(urlChangeHandler);
-  urlChangeHandler(history.location, 'replace');
-
-  // align url with store changes
-  store.subscribe(() => {
-    const rtr = getRouter(store.getState());
-    if (rtr && history.location !== rtr.location) {
-      isTimeTraveling = true;
-      history.replace(rtr.location);
-      isTimeTraveling = false;
-    }
-  });
 };
 
 
-export const config = (reduxStore, locConfig) => {
+export const configStore = (reduxStore: AppStore) => {
+  store = reduxStore;
+
+
+  const urlChangeHandler = (location: Location) => {
+    if (!isTimeTraveling) {
+      const parsedRoute = locationToRoute(location);
+      if (parsedRoute && store) {
+        store.dispatch(setLocation(
+          location,
+          parsedRoute.routeId,
+          parsedRoute.params,
+          parsedRoute.searchParams,
+        ));
+      }
+    }
+  };
+
+  if (history != null && store != null) {
+    history.listen(urlChangeHandler);
+    urlChangeHandler(history.location);
+
+    // align url with store changes
+    store.subscribe(() => {
+      if (history && store) {
+        const rtr = getRouter(store.getState());
+        if (rtr && history.location !== rtr.location) {
+          isTimeTraveling = true;
+          // $FlowFixMe - this will cause no harm, it's needed to handle both hash and browser modes
+          history.replace(rtr.location);
+          isTimeTraveling = false;
+        }
+      }
+    });
+  }
+};
+
+
+export const config = (reduxStore: AppStore, locConfig: RouterConfig) => {
   setRoutes(locConfig.routes);
   routeNotFound = locConfig.notFoundRoute;
   setMode(locConfig.mode);
