@@ -81,7 +81,7 @@ Use + for 1 or more repetitions
 
 ```js
 import { combineReducers } from 'redux';
-import { routerReducer as router } from '@entando/router';
+import { routerReducer as router } from 'redux-router';
 
 export default combineReducers({
   router, // the default key is 'router'
@@ -107,7 +107,7 @@ to the router state. E.g.
 
 ```js
 import { combineReducers } from 'redux';
-import { routerReducer, setRouterSelector } from '@entando/router';
+import { routerReducer, setRouterSelector } from 'redux-router';
 
 // needed to set up the custom router key(s)
 setRouterSelector(state => state.one.two);
@@ -141,7 +141,7 @@ The `routerConfig` function needs the Redux store and the JSON routes config obj
 ```js
 import { createStore } from 'redux';
 import rootReducer from 'app/reducer';
-import { routerConfig } from '@entando/router';
+import { routerConfig } from 'redux-router';
 
 // this can be defined elsewhere and imported
 const routerConfig = {
@@ -158,7 +158,7 @@ routerConfig(store, routerConfig);
 
 ```
 
-### 4. Create a routing Component
+### 4. React: Create a routing Component
 
 Just create a React Component taking the route via props, and connect it to the state:
 
@@ -167,7 +167,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { getRoute } from '@entando/router';
+import { getRoute } from 'redux-router';
 
 import showcase from 'react-showcase';
 import LoginPage from 'ui/login/LoginPage';
@@ -192,45 +192,15 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, null)(MyRouter);
 ```
 
-### 5. Link / gotoRoute
+### 5. Links (gotoRoute)
 
-Use `Link` component to create internal links. Usage:
-
-```js
-// sample router config JSON:
-const config = {
-  routes: [
-    { name: 'user', path: '/user/:id' }
-  ],
-};
-```
-
-```js
-// sample Component using Link
-import { Link } from '@entando/router';
-
-// ... into the component JSX ...
-
-  // resulting URL: /user/72
-  <Link
-    route="user"
-    params={{ id: '72' }}
-  />
-
-  // resulting URL: /user/72?view=profile
-  <Link
-    route="user"
-    params={{ id: '72' }}
-    searchParams={{ view: 'profile' }}
-  />
-```
 
 To redirect to a route programmatically (e.g. in response to an authentication error), the
 `gotoRoute` function must be used. E.g.:
 
 
 ```js
-import { gotoRoute } from '@entando/router';
+import { gotoRoute } from 'redux-router';
 
 // ... other code ...
 
