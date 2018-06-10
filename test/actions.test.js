@@ -1,18 +1,28 @@
+// @flow
+
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { isFSA } from 'flux-standard-action';
+
+import type { Action } from 'flux-standard-action';
+import type { Location } from '../src/flow-types';
 
 import { SET_LOCATION, setLocation } from '../src/state/actions';
 
 
 describe('router/actions', () => {
   describe('setLocation', () => {
-    const LOCATION = {};
+    const LOCATION: Location = {
+      hash: '',
+      key: '',
+      pathname: '/just/random/path',
+      search: '',
+    };
     const ROUTE = 'fakeRouteName';
     const PARAMS = {};
     const SEARCH_PARAMS = {};
 
-    let action;
+    let action: Action<string, any, any>;
 
     beforeEach(() => {
       action = setLocation(LOCATION, ROUTE, PARAMS, SEARCH_PARAMS);

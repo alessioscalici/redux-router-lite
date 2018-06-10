@@ -1,7 +1,7 @@
 // @flow
 
-// eslint-disable-next-line no-unused-vars
 import type { RouterState } from 'history';
+import type { Action } from 'flux-standard-action';
 
 import { SET_LOCATION } from './actions';
 
@@ -13,8 +13,10 @@ const INITIAL_STATE = {
   searchParams: {},
 };
 
-export default (state?: RouterState = INITIAL_STATE, action?:
-{ type: string, payload: RouterState }): RouterState => {
+export default (
+  state?: RouterState = INITIAL_STATE,
+  action?: Action<string, ?any, ?any>,
+): RouterState => {
   if (!action) {
     return state;
   }

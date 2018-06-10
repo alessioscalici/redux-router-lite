@@ -38,7 +38,7 @@ export type RouterConfig = {
 export type SetLocationAction = {
   type: string,
   payload: {
-    location: BrowserLocation | HashLocation,
+    location: Location,
     route: string,
     params: {[string]: string},
     searchParams: {[string]: string},

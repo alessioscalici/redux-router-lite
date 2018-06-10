@@ -1,3 +1,5 @@
+// @flow
+
 import reducer from '../src/state/reducer';
 import { SET_LOCATION } from '../src/state/actions';
 
@@ -18,7 +20,7 @@ const INITIAL_STATE = {
 
 describe('router reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(INITIAL_STATE);
+    expect(reducer(undefined, { type: 'some-random-type' })).toEqual(INITIAL_STATE);
   });
 
   it('should return the initial if no action', () => {

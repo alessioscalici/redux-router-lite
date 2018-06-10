@@ -8,6 +8,8 @@ module.exports = {
     "jest": true
   },
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1
   }
 };

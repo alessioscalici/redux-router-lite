@@ -1,6 +1,5 @@
-/* @flow */
+// @flow
 
-// eslint-disable-next-line no-unused-vars
 import type { SetLocationAction, Location } from '../flow-types';
 
 
