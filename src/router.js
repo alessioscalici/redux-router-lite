@@ -6,7 +6,7 @@ import pathToRegexp, { compile } from 'path-to-regexp';
 
 // local
 // eslint-disable-next-line no-unused-vars
-import type { RouteConfig, HistoryMode, Location, History, AppStore, MatchedRoute, EnhancedRoute, RouterConfig } from './flow-types';
+import type { RouteConfig, HistoryMode, Location, History, AppStore, MatchedRoute, CompiledRoute, RouterConfig } from './flow-types';
 
 import { setLocation } from './state/actions';
 import { deparam } from './utils';
@@ -18,14 +18,14 @@ let history: ?History = null;
 let store: ?AppStore = null;
 let isTimeTraveling: boolean = false;
 
-let routes: ?Array<EnhancedRoute> = null;
+let routes: ?Array<CompiledRoute> = null;
 let routeNotFound: ?RouteConfig = null;
 
 export const getHistory = (): ?History => history;
 
 export const setRoutes = (rts: Array<RouteConfig>) => {
   const cnt = rts.length;
-  const enhancedRoutes: Array<EnhancedRoute> = [];
+  const enhancedRoutes: Array<CompiledRoute> = [];
   let keys;
   for (let i = 0; i < cnt; i += 1) {
     keys = [];
@@ -41,7 +41,7 @@ export const setRoutes = (rts: Array<RouteConfig>) => {
   return enhancedRoutes;
 };
 
-export const matchRoute = (theRoutes: Array<EnhancedRoute>, url: string): ?MatchedRoute => {
+export const matchRoute = (theRoutes: Array<CompiledRoute>, url: string): ?MatchedRoute => {
   for (let i = 0; i < theRoutes.length; i += 1) {
     const route = theRoutes[i];
     const match = route.re.exec(url);

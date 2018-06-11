@@ -23,7 +23,7 @@ export type MatchedRoute = {
   searchParams: {},
 };
 
-export type EnhancedRoute = RouteConfig & {
+export type CompiledRoute = RouteConfig & {
   re: RegExp,
   keys: Array<{ name: string }>,
   getPath: Function,
