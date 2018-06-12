@@ -14,7 +14,7 @@ export const deparam = (queryString: string) => {
   return obj;
 };
 
-export const coerceTypes = (obj: {}, emptyValue: any = '') => {
+export const coerceTypes = (obj: {}, emptyValue: mixed = '') => {
   const types = { true: !0, false: !1, null: null };
   const result = {};
   Object.keys(obj).forEach((k) => {

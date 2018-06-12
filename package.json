@@ -2,7 +2,7 @@
   "name": "redux-router",
   "version": "0.1.0",
   "description": "A pure redux-based router",
-  "main": "index.js",
+  "main": "build/index.js",
   "dependencies": {
     "history": "^4.7.2",
     "path-to-regexp": "^2.2.0"
@@ -45,5 +45,6 @@
   },
   "peerDependencies": {
     "redux": "^3.7.2"
-  }
+  },
+  "eslintIgnore": ["build"]
 }

@@ -1,7 +1,7 @@
 // @flow
 
-import type { RouterState } from 'history';
-import type { Action } from 'flux-standard-action';
+import type { Reducer } from 'redux';
+import type { RouterState, GenericAction } from '../flow-types';
 
 import { SET_LOCATION } from './actions';
 
@@ -13,9 +13,9 @@ const INITIAL_STATE = {
   searchParams: {},
 };
 
-export default (
+const reducer: Reducer<RouterState, ?GenericAction> = (
   state?: RouterState = INITIAL_STATE,
-  action?: Action<string, ?any, ?any>,
+  action?: GenericAction,
 ): RouterState => {
   if (!action) {
     return state;
@@ -34,3 +34,5 @@ export default (
       return state;
   }
 };
+
+export default reducer;

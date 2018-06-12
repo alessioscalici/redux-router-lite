@@ -28,7 +28,7 @@ describe('router reducer', () => {
   });
 
   it(`should handle "${SET_LOCATION}"`, () => {
-    expect(reducer({}, SET_LOCATION_MOCK)).toEqual({
+    expect(reducer(undefined, SET_LOCATION_MOCK)).toEqual({
       location: {},
       route: 'mockRoute',
       params: undefined,

@@ -168,7 +168,7 @@ export const configStore = (reduxStore: AppStore) => {
 };
 
 
-export const config = (reduxStore: AppStore, locConfig: RouterConfig) => {
+export const config = (reduxStore: AppStore, locConfig: RouterConfig): void => {
   setRoutes(locConfig.routes);
   routeNotFound = locConfig.notFoundRoute;
   setMode(locConfig.mode);
