@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const transform = require('babel-transform-dir');
 const fs = require('fs');
 const path = require('path');
