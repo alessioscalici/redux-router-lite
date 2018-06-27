@@ -6,6 +6,12 @@
 
 A pure Redux-based, lightweight  router.
 
+## Install
+
+```npm i redux-router-lite```
+
+(Make sure your project has ```redux``` installed).
+
 
 ## Features
 - Purely Redux based. No React dependencies (but it's really easy to integrate with React).
