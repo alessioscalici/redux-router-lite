@@ -1,7 +1,15 @@
 install:
-  - npm install
+- npm install
 script:
-  - npm test
-  - npm run lint-js
-  - npm run flow
-  - npm run build
+- npm test
+- npm run lint-js
+- npm run flow
+- npm run build
+deploy:
+  provider: npm
+  email: alessio.scalici@gmail.com
+  api_key:
+    secure: YCUMDoIXBoNEhHRAmgZvLoUX1WsdoPvzLStxJfb4kVFtUMsKQttN7zzOaU6gCMsg/6c4R+TlrkAnmBCpTXq0J3JMCdXCpq3j6jeNfUDfxcUA9DKbmypN3eguu4cgwHBb5zGz5rKx8hVXn9ZJCoQdy0t4uLXxoAc/vYYt/xcCkhb68sbjBXsavlEcN9PCgCbU1Yyp4L1w4ee57Y50LWyBJU/03u0hAsNBwaq0HBgLzuaCaJM4GOHyz0kNKFYhYCwAoFfPNKlM7jKpUlHPwnoeYg2pzVjuFWQ06BV599LUH9KMvA8JPQGf7BNMo6tgH0HRQy0lR9cEDD0ShaGhWqSST1+YndGdCc2EeJNl4gow2ARctfQZLEZK9DzWlWRL3ZQU0+4ka49uedIZU9uTe/zmgNHsIKjOLE3J2cQNu5zt4hSDFLburjAUwDmkHA/pLOx36+M+0ofPu19pE+YxSaRtBFV3It/FFew1zJWFNbKZuE2maQ+q8ofKdqlhL7kNOQGCYA4/V8mFkGkCSL/0gz6qAEUIdfTKfVxC0VLk4sTjtHG9K5Qy44Kfjg8Z5NGRrVE78rNuppE39hB8ymzTakuE0hdJ8FRGu0gc43Koz1SOsYEuqeDD2DHZauZZvtKERqH03uIBWd6aCOJrFQP6Bhkv8OBpzbp7rcCoCZEjEfi9jKM=
+  skip_cleanup: true
+  on:
+    tags: true

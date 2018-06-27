@@ -1,6 +1,7 @@
 # redux-router-lite
 ---
 [![Build Status](https://travis-ci.org/alessioscalici/redux-router-lite.svg?branch=master)](https://travis-ci.org/alessioscalici/redux-router-lite)
+[![npm version](https://badge.fury.io/js/redux-router-lite.svg)](https://badge.fury.io/js/redux-router-lite)
 ---
 
 A pure Redux-based, lightweight  router.
