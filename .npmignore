@@ -1,0 +1,7 @@
+/node_modules
+/test
+/coverage
+/scripts
+.babelrc
+.eslintrc.js
+.travis.yml
