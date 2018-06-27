@@ -2,6 +2,6 @@ install:
   - npm install
 script:
   - npm test
-  - npm runb lint-js
+  - npm run lint-js
   - npm run flow
   - npm run build
