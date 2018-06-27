@@ -1,6 +1,7 @@
 # redux-router
 ---
 ## Note: this is WIP, not released to npm yet.
+[![Build Status](https://travis-ci.org/alessioscalici/redux-router-lite.svg?branch=master)](https://travis-ci.org/alessioscalici/redux-router-lite)
 ---
 
 A pure Redux-based, lightweight  router.
@@ -210,4 +211,3 @@ import { gotoRoute } from 'redux-router';
   // resulting URL: /user/72?view=profile
   gotoRoute('user', { id: '72' }, { view: 'profile' });
 ```
-
