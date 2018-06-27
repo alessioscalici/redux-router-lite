@@ -1,4 +1,4 @@
-// @flow
+
 
 import reducer from '../src/state/reducer';
 import { SET_LOCATION } from '../src/state/actions';

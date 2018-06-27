@@ -1,6 +1,6 @@
 // @flow
 
-import type { Location, RouterState } from '../flow-types';
+import type { Location, RouterState } from '../index';
 
 type State = {};
 

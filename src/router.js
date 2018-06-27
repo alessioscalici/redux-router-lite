@@ -6,7 +6,7 @@ import pathToRegexp, { compile } from 'path-to-regexp';
 
 // local
 // eslint-disable-next-line no-unused-vars
-import type { RouteConfig, HistoryMode, Location, History, AppStore, MatchedRoute, CompiledRoute, RouterConfig } from './flow-types';
+import type { RouteConfig, HistoryMode, Location, History, AppStore, MatchedRoute, CompiledRoute, RouterConfig } from './index';
 
 import { setLocation } from './state/actions';
 import { deparam } from './utils';

@@ -1,5 +1,3 @@
-// @flow
-
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { isFSA } from 'flux-standard-action';

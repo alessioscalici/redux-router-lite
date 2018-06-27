@@ -1,8 +1,13 @@
 {
-  "name": "redux-router",
+  "name": "redux-router-lite",
   "version": "0.1.0",
-  "description": "A pure redux-based router",
-  "main": "build/index.js",
+  "description": "A lightweight, pure redux-based router",
+  "main": "./build/index.js",
+  "files": [
+    "build",
+    "flow-typed",
+    "src"
+  ],
   "dependencies": {
     "history": "^4.7.2",
     "path-to-regexp": "^2.2.0"
@@ -24,9 +29,12 @@
   "author": "alessioscalici",
   "license": "ISC",
   "devDependencies": {
+    "@comandeer/babel-plugin-banner": "^2.0.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-flow-comments": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -46,5 +54,7 @@
   "peerDependencies": {
     "redux": "^3.7.2"
   },
-  "eslintIgnore": ["build"]
+  "eslintIgnore": [
+    "build"
+  ]
 }

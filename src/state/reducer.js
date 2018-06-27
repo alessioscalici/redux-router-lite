@@ -1,7 +1,7 @@
 // @flow
 
 import type { Reducer } from 'redux';
-import type { RouterState, GenericAction } from '../flow-types';
+import type { RouterState, GenericAction } from '../index';
 
 import { SET_LOCATION } from './actions';
 

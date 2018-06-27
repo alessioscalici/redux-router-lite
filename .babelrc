@@ -5,11 +5,14 @@
         "browsers": ["last 2 versions", "safari >= 7"]
       }
     }],
-    "flow",
     "stage-2"
   ],
   "plugins": [
-    "transform-es2015-modules-commonjs"
+    "transform-flow-comments",
+    
+    ["@comandeer/babel-plugin-banner", {
+      "banner": "/* @flow */"
+    }] 
   ],
   "env": {
     "test": {
@@ -17,7 +20,11 @@
         ["env", "stage-2"]
       ],
       "plugins": [
-        "transform-es2015-modules-commonjs"
+        "transform-flow-comments",
+        
+        ["@comandeer/babel-plugin-banner", {
+          "banner": "/* @flow */"
+        }]
       ]
     }
   }

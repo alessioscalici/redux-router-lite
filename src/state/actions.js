@@ -1,6 +1,6 @@
 // @flow
 
-import type { SetLocationAction, Location } from '../flow-types';
+import type { SetLocationAction, Location } from '../index';
 
 
 export const SET_LOCATION = '@@router/set-location';

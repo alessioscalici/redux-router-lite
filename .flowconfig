@@ -1,12 +1,13 @@
 [ignore]
 <PROJECT_ROOT>/build/.*
 [include]
-./src
-./flow-typed/npm
+./src/*
+./test/*
+./flow-typed/npm/*
 [libs]
 
 [lints]
 
 [options]
-
+module.use_strict=true
 [strict]
