@@ -19,6 +19,9 @@ transform('./src', './build', {
   },
 })
   .then(() => {
+    fs.copyFileSync(resolveApp('src/index.js'), resolveApp('build/index.js.flow'));
+  })
+  .then(() => {
     // eslint-disable-next-line no-console
     console.log('build ready');
   });

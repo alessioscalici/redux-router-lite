@@ -1,6 +1,6 @@
 {
   "name": "redux-router-lite",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A lightweight, pure redux-based router",
   "main": "./build/index.js",
   "files": [
